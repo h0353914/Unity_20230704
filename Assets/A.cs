@@ -6,7 +6,7 @@ public class A : MonoBehaviour
 {
     float x = 0;
     int lv = 1;
-    private Rigidbody2D rBody;
+    Rigidbody2D rBody;
 
 
     // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class A : MonoBehaviour
 
         //Vector2 vector=Vector2.zero;
         //vector.x = Input.GetAxis("Horizontal") * Time.deltaTime * 10;
-        rBody.velocityX = Input.GetAxis("Horizontal") * Time.deltaTime * 10;
+        rBody.velocityX += Input.GetAxis("Horizontal") * Time.deltaTime * 10;
 
 
 
