@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class A : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class A : MonoBehaviour
     Rigidbody2D rBody;
     public Animator Big;
     public GameObject 草地_旋轉;
+    public GameObject 草地;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,14 +21,25 @@ public class A : MonoBehaviour
         Big = GetComponent<Animator>();
 
         List<GameObject> gobj = new List<GameObject>();
-        for (int n = 0; n < 2; n++)
+        for (int n = 10; n < 1080; n += 10)
         {
             GameObject gobj_temp = Instantiate(草地_旋轉);
-            gobj_temp.name = "草地_旋轉" + n;
+            //gobj_temp.transform.parent = 草地.transform;
+            gobj_temp.transform.localPosition = 草地_旋轉.transform.localPosition + new Vector3(n / 10, 0, 0);
 
-            gobj_temp.gameObject.transform.rotation= Quaternion.Euler(20, 0, 0);
+            //gobj_temp.transform.localPosition = Vector3.Slerp(草地_旋轉.transform.localPosition, 草地_旋轉.transform.localPosition, 0.5f);
 
-            gobj.Add(gobj_temp);
+            //gobj_temp.transform.Translate(n / 10, 0,0);
+
+
+            gobj_temp.transform.localRotation = Quaternion.Euler(0, 0, n);
+
+
+            //gobj_temp.name = "草地_旋轉" + n;
+
+            //gobj_temp.gameObject.transform.rotation= Quaternion.Euler(20, 0, 0);
+
+            //gobj.Add(gobj_temp);
 
         }
 
