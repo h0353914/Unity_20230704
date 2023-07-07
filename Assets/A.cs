@@ -25,7 +25,7 @@ public class A : MonoBehaviour
         {
             GameObject copy草地 = Instantiate(gobj_super);
             copy草地.transform.parent = gobj_super.transform;
-            copy草地.transform.localPosition = new Vector3(0.1f, 0, 0);
+            copy草地.transform.localPosition = new Vector3(0.03f, 0, 0);
             copy草地.transform.localRotation = Quaternion.Euler(0, 0, r);
             copy草地.name = "草地_copy" + n;
             gobj_super = copy草地;
@@ -50,7 +50,10 @@ public class A : MonoBehaviour
         if (草地bool && Input.GetAxisRaw("Jump") == 1)
         {
             草地bool = false;
-            rBody.velocityY = 6;
+            //rBody.velocityY = 6;
+            rBody.AddForce(new Vector2(0, 350));
+
+
         }
         rBody.velocityX += x;
     }
