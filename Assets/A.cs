@@ -11,48 +11,32 @@ public class A : MonoBehaviour
     bool 草地bool = false;
     Rigidbody2D rBody;
     public Animator Big;
-    public GameObject 草地_旋轉;
-    public GameObject 草地;
+    public GameObject 草地_super;
+
     // Start is called before the first frame update
     void Start()
     {
-
         rBody = GetComponent<Rigidbody2D>();
         Big = GetComponent<Animator>();
-
-        List<GameObject> gobj = new List<GameObject>();
-        for (int n = 10; n < 1080; n += 10)
+        GameObject gobj_super = 草地_super;
+        int n = 1;
+        float r = 0.1f;
+        while (300 / r > n)
         {
-            GameObject gobj_temp = Instantiate(草地_旋轉);
-            //gobj_temp.transform.parent = 草地.transform;
-            gobj_temp.transform.localPosition = 草地_旋轉.transform.localPosition + new Vector3(n / 10, 0, 0);
+            GameObject copy草地 = Instantiate(gobj_super);
+            copy草地.transform.parent = gobj_super.transform;
+            copy草地.transform.localPosition = new Vector3(0.1f, 0, 0);
+            copy草地.transform.localRotation = Quaternion.Euler(0, 0, r);
+            copy草地.name = "草地_copy" + n;
+            gobj_super = copy草地;
 
-            //gobj_temp.transform.localPosition = Vector3.Slerp(草地_旋轉.transform.localPosition, 草地_旋轉.transform.localPosition, 0.5f);
-
-            //gobj_temp.transform.Translate(n / 10, 0,0);
-
-
-            gobj_temp.transform.localRotation = Quaternion.Euler(0, 0, n);
-
-
-            //gobj_temp.name = "草地_旋轉" + n;
-
-            //gobj_temp.gameObject.transform.rotation= Quaternion.Euler(20, 0, 0);
-
-            //gobj.Add(gobj_temp);
-
+            n++;
         }
-
     }
-
-    // Update is called once per frame
     void Update()
     {
 
-        //Vector2 vector=Vector2.zero;
-        //vector.x = Input.GetAxis("Horizontal") * Time.deltaTime * 10;
-        //rBody.velocityX += Input.GetAxis("Horizontal") * Time.deltaTime * 10;
-        x = Input.GetAxis("Horizontal") * Time.deltaTime * 10;
+        x = Input.GetAxis("Horizontal") * Time.deltaTime * 200;
 
         if (Input.GetAxisRaw("Horizontal") == 1)
         {
@@ -69,17 +53,9 @@ public class A : MonoBehaviour
             rBody.velocityY = 6;
         }
         rBody.velocityX += x;
-
-
-        //transform.position = vector;
     }
-
-
-
-
     private void OnCollisionStay2D(Collision2D collision)
     {
-
         if (collision.gameObject.tag == "草地")
         {
             草地bool = true;
