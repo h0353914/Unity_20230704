@@ -13,6 +13,8 @@ public class A : MonoBehaviour
     public Animator Big;
     public GameObject 草地_super;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +22,12 @@ public class A : MonoBehaviour
         Big = GetComponent<Animator>();
         GameObject gobj_super = 草地_super;
         int n = 1;
-        float r = 0.1f;
+        float r = 3f;
         while (300 / r > n)
         {
             GameObject copy草地 = Instantiate(gobj_super);
             copy草地.transform.parent = gobj_super.transform;
-            copy草地.transform.localPosition = new Vector3(0.03f, 0, 0);
+            copy草地.transform.localPosition = new Vector3(1f, 0, 0);
             copy草地.transform.localRotation = Quaternion.Euler(0, 0, r);
             copy草地.name = "草地_copy" + n;
             gobj_super = copy草地;
@@ -38,15 +40,15 @@ public class A : MonoBehaviour
 
         x = Input.GetAxis("Horizontal") * Time.deltaTime * 200;
 
-        if (Input.GetAxisRaw("Horizontal") == 1)
-        {
+        //if (Input.GetAxisRaw("Horizontal") == 1)
+        //{
 
-            Big.enabled = true;
-        }
-        else
-        {
-            Big.enabled = false;
-        }
+        //    Big.SetBool("go", true);
+        //}
+        //else
+        //{
+        //    Big.SetBool("stop",true);
+        //}
         if (草地bool && Input.GetAxisRaw("Jump") == 1)
         {
             草地bool = false;
