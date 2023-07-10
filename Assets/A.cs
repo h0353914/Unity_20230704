@@ -40,18 +40,22 @@ public class A : MonoBehaviour
 
         x = Input.GetAxis("Horizontal") * Time.deltaTime * 200;
 
-        if (Input.GetAxisRaw("Horizontal") == 1)
+        if (Input.GetAxisRaw("Horizontal") >0.2)
         {
-
             Big.SetBool("go", true);
+            Big.SetBool("back", false);
+            Big.SetBool("stop", false);
         }
-        else if (Input.GetAxisRaw("Horizontal") == -1)
+        else if (Input.GetAxisRaw("Horizontal") <-0.2)
         {
-
+            Big.SetBool("go", false);
             Big.SetBool("back", true);
+            Big.SetBool("stop", false);
         }
         else if (Input.GetAxisRaw("Horizontal") == 0)
         {
+            Big.SetBool("go", false);
+            Big.SetBool("back", false);
             Big.SetBool("stop", true);
         }
 
