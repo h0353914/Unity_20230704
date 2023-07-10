@@ -10,7 +10,7 @@ public class A : MonoBehaviour
     int lv = 1;
     bool 草地bool = false;
     Rigidbody2D rBody;
-    public Animator Big;
+    public Animator Big = null;
     public GameObject 草地_super;
 
 
@@ -40,15 +40,25 @@ public class A : MonoBehaviour
 
         x = Input.GetAxis("Horizontal") * Time.deltaTime * 200;
 
-        //if (Input.GetAxisRaw("Horizontal") == 1)
-        //{
+        if (Input.GetAxisRaw("Horizontal") == 1)
+        {
 
-        //    Big.SetBool("go", true);
-        //}
-        //else
-        //{
-        //    Big.SetBool("stop",true);
-        //}
+            Big.SetBool("go", true);
+        }
+        else if (Input.GetAxisRaw("Horizontal") == -1)
+        {
+
+            Big.SetBool("back", true);
+        }
+        else if (Input.GetAxisRaw("Horizontal") == 0)
+        {
+            Big.SetBool("stop", true);
+        }
+
+
+
+
+
         if (草地bool && Input.GetAxisRaw("Jump") == 1)
         {
             草地bool = false;
